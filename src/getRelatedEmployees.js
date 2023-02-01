@@ -1,11 +1,29 @@
 const data = require('../data/zoo_data');
 
 const isManager = (id) => {
-  // seu código aqui
+  const manage = [];
+  data.employees.forEach((people) => {
+    manage.push(...people.managers);
+  });
+
+  return manage.some((manager) => manager === id);
 };
 
 const getRelatedEmployees = (managerId) => {
-  // seu código aqui
+  const peopleGeridas = [];
+  data.employees.forEach((employee) => employee.managers.forEach((manager) => {
+    if (manager === managerId) {
+      peopleGeridas.push(`${employee.firstName} ${employee.lastName}`);
+    }
+  }));
+  try {
+    if (isManager(managerId) !== true) {
+      throw new Error('O id inserido não é de uma pessoa colaboradora gerente!');
+    }
+    return peopleGeridas;
+  } catch (error) {
+    return error.message;
+  }
 };
 
 module.exports = { isManager, getRelatedEmployees };

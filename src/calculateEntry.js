@@ -29,13 +29,13 @@ const calculateEntry = (entrants) => {
     const kid = entrants.child * data.prices.child;
     const adults = entrants.adult * data.prices.adult;
     const seniors = entrants.senior * data.prices.senior;
-    return kid + adults + seniors;
+    return parseFloat((kid + adults + seniors).toFixed(2));
   }
   if (entrants[0] !== undefined) {
     const kid = countEntrants(entrants).child * data.prices.child;
     const adults = countEntrants(entrants).adult * data.prices.adult;
     const seniors = countEntrants(entrants).senior * data.prices.senior;
-    return kid + adults + seniors;
+    return parseFloat((kid + adults + seniors).toFixed(2));
   }
 };
 

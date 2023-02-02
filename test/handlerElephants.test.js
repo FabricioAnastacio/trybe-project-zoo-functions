@@ -1,4 +1,3 @@
-// const { TestScheduler } = require('jest');
 const handlerElephants = require('../src/handlerElephants');
 
 describe('Testes da função HandlerElephants', () => {
@@ -26,7 +25,4 @@ describe('Testes da função HandlerElephants', () => {
   it('Verifica se o retorno é null caso o parametro não seja o esperado', () => {
     expect(handlerElephants('Count')).toEqual(null);
   });
-});
-describe('Testado retornos da função handlerElephants', () => {
-  
 });

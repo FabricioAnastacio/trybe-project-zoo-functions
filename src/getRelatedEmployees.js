@@ -16,14 +16,11 @@ const getRelatedEmployees = (managerId) => {
       peopleGeridas.push(`${employee.firstName} ${employee.lastName}`);
     }
   }));
-  try {
-    if (isManager(managerId) !== true) {
-      throw new Error('O id inserido não é de uma pessoa colaboradora gerente!');
-    }
-    return peopleGeridas;
-  } catch (error) {
-    return error.message;
+  if (isManager(managerId) !== true) {
+    throw new Error('O id inserido não é de uma pessoa colaboradora gerente!');
   }
+
+  return peopleGeridas;
 };
 
 module.exports = { isManager, getRelatedEmployees };

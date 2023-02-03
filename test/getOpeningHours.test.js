@@ -31,8 +31,11 @@ describe('Testes da função getOpeningHours', () => {
   it('Caso o parametro seja de um dia letivo mas a hora seja fora do horario de funcionamento o retorno sera que o zoologico estara fechado', () => {
     expect(getOpeningHours('Friday', '12:40-pm')).toBe(open);
   });
+  it('Caso o parametro seja de um dia letivo mas a hora seja fora do horario de funcionamento o retorno sera que o zoologico estara fechado', () => {
+    expect(getOpeningHours('Saturday', '1:40-AM')).toBe(closed);
+  });
   it('1', () => {
-    expect(getOpeningHours('Saturday', '08:40-pm')).toBe(open);
+    expect(getOpeningHours('Saturday')).toBe(closed);
   });
   it('verifica se é laçado um erro caso a hora passada seja "XXX:XX-XM" com a mensagem "The hour must be between 0 and 12"', () => {
     expect(() => getOpeningHours('Friday', '123:00-pm')).toThrow(/^The hour must be between 0 and 12$/);
@@ -41,7 +44,10 @@ describe('Testes da função getOpeningHours', () => {
     expect(() => getOpeningHours('Friday', '09:123-am')).toThrow(/^The minutes must be between 0 and 59$/);
   });
   it('verifica se é laçado um erro caso a hora passada não seja no padrão numerico, com a mensagem "The hour should represent a number"', () => {
-    expect(() => getOpeningHours('Friday', 'seis:meia-pm')).toThrow(/^The hour should represent a number$/);
+    expect(() => getOpeningHours('Friday', 'C8:30-pm')).toThrow(/^The hour should represent a number$/);
+  });
+  it('verifica se é laçado um erro caso minuto passada não seja no padrão numerico, com a mensagem "The minutes should represent a number"', () => {
+    expect(() => getOpeningHours('Friday', '08:3C-pm')).toThrow(/^The minutes should represent a number$/);
   });
   it('verifica se é laçado um erro caso o formato da hora não seja PM ou AM, com a mensagem "The abbreviation must be AM or PM"', () => {
     expect(() => getOpeningHours('Friday', '09:00-XX')).toThrow(/^The abbreviation must be 'AM' or 'PM'$/);

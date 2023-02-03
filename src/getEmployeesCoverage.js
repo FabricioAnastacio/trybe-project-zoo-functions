@@ -5,10 +5,12 @@ function searchPeople(chave, valor) {
   if (chave === 'name') {
     people = data.employees.find((employee) =>
       employee.firstName === valor || employee.lastName === valor);
-  } else if (chave === 'id') {
+  }
+  if (chave === 'id') {
     people = data.employees.find((employee) =>
       employee.id === valor);
   }
+  if (people === undefined) throw new Error('Informações inválidas');
 
   return people;
 }

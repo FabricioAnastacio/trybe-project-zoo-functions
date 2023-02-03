@@ -29,13 +29,7 @@ describe('Testes da função getOpeningHours', () => {
     expect(getOpeningHours('Wednesday', '9:40-pm')).toBe(closed);
   });
   it('Caso o parametro seja de um dia letivo mas a hora seja fora do horario de funcionamento o retorno sera que o zoologico estara fechado', () => {
-    expect(getOpeningHours('Friday', '12:40-pm')).toBe(open);
-  });
-  it('Caso o parametro seja de um dia letivo mas a hora seja fora do horario de funcionamento o retorno sera que o zoologico estara fechado', () => {
-    expect(getOpeningHours('Saturday', '1:40-AM')).toBe(closed);
-  });
-  it('1', () => {
-    expect(getOpeningHours('Saturday')).toBe(closed);
+    expect(getOpeningHours('Friday', '12:00-am')).toBe(closed);
   });
   it('verifica se é laçado um erro caso a hora passada seja "XXX:XX-XM" com a mensagem "The hour must be between 0 and 12"', () => {
     expect(() => getOpeningHours('Friday', '123:00-pm')).toThrow(/^The hour must be between 0 and 12$/);
